@@ -34,6 +34,10 @@ func TestExpand(t *testing.T) {
 	assert(t, gopinyin.Split("zhoguo").Expand(), gopinyin.Pinyins{"zhong,zhou", "guo"})
 }
 
+func TestJoin(t *testing.T) {
+	assert(t, gopinyin.Split("caigh").Abbreviate().Join(), "cgh")
+}
+
 func TestSQL(t *testing.T) {
 	assert(t, gopinyin.Split("caiguanhao").Expand().SQL("pinyin"), "SEQUENCED_ARRAY_CONTAINS(pinyin, '{cai}', '{guan,guang}', '{hao}')")
 	assert(t, gopinyin.Split("").Expand().SQL("pinyin"), "")

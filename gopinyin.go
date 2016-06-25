@@ -25,6 +25,12 @@ func (pys Pinyins) Expand() (out Pinyins) {
 	return
 }
 
+// Convert the pinyin array to a string.
+func (pys Pinyins) Join(bytes ...byte) (out string) {
+	out = strings.Join(pys, string(bytes))
+	return
+}
+
 // Convert the expanded pinyins to WHERE SQL statement for PostgreSQL.
 func (pys Pinyins) SQL(column string) (out string) {
 	var ret []string

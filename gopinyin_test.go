@@ -3,6 +3,7 @@ package gopinyin_test
 import (
 	"fmt"
 	"reflect"
+	"regexp"
 	"testing"
 
 	"github.com/caiguanhao/gopinyin"
@@ -36,6 +37,14 @@ func TestExpand(t *testing.T) {
 
 func TestJoin(t *testing.T) {
 	assert(t, gopinyin.Split("caigh").Abbreviate().Join(), "cgh")
+}
+
+func TestRegexp(t *testing.T) {
+	assert(t, gopinyin.Split("caigh").Regexp(), regexp.MustCompile(`\^cai[a-z]*\^g[a-z]*\^h[a-z]*`))
+}
+
+func TestRegexpString(t *testing.T) {
+	assert(t, gopinyin.Split("zhoguo").RegexpString(), `\^zho[a-z]*\^guo[a-z]*`)
 }
 
 func TestSQL(t *testing.T) {
